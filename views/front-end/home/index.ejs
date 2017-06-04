@@ -1,0 +1,184 @@
+<% include ../layout/head %>
+	<!-- THE HEADER -->
+<body>
+  <div class="be-loader">
+    <div class="spinner">
+      <div class="spinner-container container1">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+      </div>
+      <div class="spinner-container container2">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+      </div>
+      <div class="spinner-container container3">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+      </div>
+    </div>
+  </div>
+  <div id="root"></div>
+
+
+
+       
+  
+	<!-- THE FOOTER -->
+
+
+	<!-- SCRIPTS	 -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="../asset/script/bootstrap.min.js"></script>		
+	<script src="../asset/script/idangerous.swiper.min.js"></script>
+	<script src="../asset/script/isotope.pkgd.min.js"></script>
+	<script src="../asset/script/jquery.viewportchecker.min.js"></script>		
+	<script src="../asset/script/global.js"></script>	
+    <script src="../bundle.js"></script>
+	</body>
+
+
+        
+
+     <script>
+      // In the following example, markers appear when the user clicks on the map.
+      // Each marker is labeled with a single alphabetical character.
+
+
+      var labels = '';
+      var labelIndex = 0;
+      var markers = [];
+      function initAutocomplete() {
+        if(document.getElementById('map')){
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: { lat: 10.4561, lng: 106.356 },
+          zoom: 13,
+          mapTypeId: 'roadmap'
+        });
+        // new google.maps.Marker({
+        //   position: {lat: <?= $mark->latitude ?>, lng:  <?= $mark->longitude ?>},
+        //   label: labels[labelIndex++ % labels.length],
+        //   map: map  
+        // });
+
+        // function initAutocomplete(() {
+        //   var bangalore = { lat: 12.97, lng: 77.59 };
+        //   var map = new google.maps.Map(document.getElementById('map'), {
+        //     zoom: 13,
+        //     center: bangalore,
+        //     //mapTypeId: 'roadmap'
+        //   });
+
+        // This event listener calls addMarker() when the map is clicked.
+        google.maps.event.addListener(map, 'click', function (event) {
+          addMarker(event.latLng, map);
+        });
+
+        var input = document.getElementById('input');
+
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        map.addListener('bounds_changed', function () {
+          searchBox.setBounds(map.getBounds());
+        });
+
+        searchBox.addListener('places_changed', function () {
+          var places = searchBox.getPlaces();
+
+          if (places.length == 0) {
+            return;
+          }
+
+          // Clear out the old markers.
+          markers.forEach(function (marker) {
+            marker.setMap(null);
+          });
+          markers = [];
+
+          // For each place, get the icon, name and location.
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function (place) {
+            if (!place.geometry) {
+              console.log("Returned place contains no geometry");
+              return;
+            }
+            var icon = {
+              url: place.icon,
+              size: new google.maps.Size(71, 71),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(25, 25)
+            };
+
+            // Create a marker for each place.
+            markers.push(new google.maps.Marker({
+              map: map,
+              icon: icon,
+              title: place.name,
+              position: place.geometry.location
+            }));
+
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+          });
+          map.fitBounds(bounds);
+          document.getElementById('lat').value = map.center.lat();
+          document.getElementById('lng').value = map.center.lng();
+        });
+
+
+        // Add a marker at the center of the map.
+        //addMarker(bangalore, map);
+      }
+      }
+
+      // Adds a marker to the map.
+      function addMarker(location, map) {
+
+        // Add the marker at the clicked location, and add the next-available label
+        // from the array of alphabetical characters.
+        var marker = new google.maps.Marker({
+          position: location,
+          label: labels[labelIndex++ % labels.length],
+          map: map
+
+        });
+
+        document.getElementById('lat').value = marker.position.lat();
+        document.getElementById('lng').value = marker.position.lng();
+        deleteMarkers();
+        markers.push(marker);
+      }
+      function setMapOnAll(map) {
+        for (var i = 0; i < markers.length; i++) {
+          markers[i].setMap(map);
+        }
+      }
+
+      // Removes the markers from the map, but keeps them in the array.
+      function clearMarkers() {
+        setMapOnAll(null);
+      }
+      function deleteMarkers() {
+        clearMarkers();
+        markers = [];
+      }
+
+
+      //google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAL0C1dheOG0o01S5e9FOTlVasfsAylyes&libraries=places&callback=initAutocomplete"
+      async defer></script>
+
+
+      
+</html>
