@@ -15208,7 +15208,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 var getImageFromPlace = function getImageFromPlace(id) {
-    return fetch('https://diphuotclient.herokuapp.com/api/getimagefromplace/' + id).then(function (res) {
+    return fetch('https://diphuotclient.herokuapp.com/getimagefromplace/' + id).then(function (res) {
         return res.json();
     });
 };
