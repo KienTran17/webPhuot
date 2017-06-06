@@ -3,7 +3,7 @@ const { verify } = require('../../../config/jwt');
 const { editAvatar } = require('../../../model/user');
 
 module.exports = (req, res) => {
-    const token = req.params.token;
+    const token = req.cookies['tk'];
     verify(token).then( r => {
          getArrayUpload('avatar-1')(req, res,  (err) => {
             if (err) {

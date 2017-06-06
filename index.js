@@ -47,7 +47,7 @@ app.get('/api/getimagefromplace/:id', require('./controller/server/image/getImag
 app.get('/api/getplacefromid/:id', require('./controller/server/place/detailPlace'));
 app.get('/api/getuserbyusername/:token', require('./controller/server/user/getUserByUserName'));
 app.get('/api/getlistplacefromuser/:token/:id', require('./controller/server/user/getListPlaceFromUser'));
-app.post('/api/insertplace/:token', jsonParser, require('./controller/server/user/insertPlace'));
+app.post('/api/insertplace', jsonParser, require('./controller/server/user/insertPlace'));
 app.get('/api/logout', jsonParser, require('./controller/server/user/logout'));
 app.get('/api/getcity', jsonParser, require('./controller/server/place/getCity'));
 app.get('/api/getward', jsonParser, require('./controller/server/place/getWard'));
@@ -56,7 +56,7 @@ app.post('/api/changebasicinfor', jsonParser, require('./controller/server/user/
 app.post('/api/changeaboutme', jsonParser, require('./controller/server/user/changeAboutMe'));
 app.get('/api/getlistplacefromuserid/:id', require('./controller/server/user/getListPlaceFromUserId'));
 app.get('/api/getcommentplace/:id', require('./controller/server/comment/getCommentPlace'));
-app.post('/api/editavatar/:token',jsonParser,require('./controller/server/user/editAvatar' ));
+app.post('/api/editavatar',jsonParser,require('./controller/server/user/editAvatar' ));
 //app.post('/api/insertcomment/',jsonParser, require('./controller/server/comment/insertComment'));
 app.post('/api/checkfacebook/',jsonParser,require('./controller/server/user/checkFacebook' ));
 app.get('*', require('./controller/home'));

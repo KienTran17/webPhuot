@@ -19,7 +19,7 @@ function convertDate(date) {
 
 module.exports = (req, res) => {
 
-    const token = req.params.token;
+    const token = req.cookies['tk'];
     //console.log(req.body);
     //console.log(lat, lng, txtNamePlace, cbTreckking, camping, seeView, cbClaimb, txtAddress, cityId, provinceId, txtDesPlace);
     //res.send(token)

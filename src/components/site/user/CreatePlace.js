@@ -98,8 +98,7 @@ class CreatePlace extends Component {
         formData.append('txtDes',CKEDITOR.instances['editor1'].getData());
         const token = getCookie('tk');
         const { dispatch } = this.props;
-        insertPlace(token, formData).then(r => {
-            console.log(r)
+        insertPlace(formData).then(r => {
             if (r) window.location = '/';
             else alert('Them that bai!');
         })
