@@ -7,7 +7,7 @@ module.exports = (req, res) => {
               getUserByUsername(r.username).then(user => res.send(user.rows[0]));
         })
         .catch((e) => {
-            res.clearCookie("tk");
+            //res.clearCookie("tk");
             res.send('LOI GET USER')
         });
 

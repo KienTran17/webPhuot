@@ -1,5 +1,5 @@
 const changeBasicInfor = (token, mobile, first_name, last_name) => (
-    fetch('https://diphuotclient.herokuapp.com/api/changebasicinfor', {
+    fetch('https://diphuotclient.herokuapp.com/changebasicinfor', {
         method: 'POST',
         headers: {
             Accept: 'application/json',

@@ -1,5 +1,5 @@
 const editAvatar = (file) => (
-    fetch('https://diphuotclient.herokuapp.com/api/editavatar', { 
+    fetch('https://diphuotclient.herokuapp.com/api/editavatar/', {
         method: 'POST',
         credentials: 'include',
         body: file

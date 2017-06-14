@@ -1,5 +1,5 @@
 const insertPlace = (form) => (
-    fetch('https://diphuotclient.herokuapp.com/api/insertplace/', {
+    fetch('https://diphuotclient.herokuapp.com/api/insertplace', {
         method: 'POST',
         credentials: 'include',
         body: form

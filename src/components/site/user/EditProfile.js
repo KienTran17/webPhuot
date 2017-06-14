@@ -38,7 +38,6 @@ class EditProfile extends Component {
     var form = document.getElementById("myForm");
     var formData = new FormData(form);
     editAvatar(formData).then(res => {
-      console.log(res)
       dispatch({ type: "USER", item: res })
     });
   }

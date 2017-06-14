@@ -19,6 +19,7 @@ function convertDate(date) {
 
 module.exports = (req, res) => {
 
+
     const token = req.cookies['tk'];
     //console.log(req.body);
     //console.log(lat, lng, txtNamePlace, cbTreckking, camping, seeView, cbClaimb, txtAddress, cityId, provinceId, txtDesPlace);
@@ -29,7 +30,7 @@ module.exports = (req, res) => {
                 let { lat, lng, txtNamePlace, cbTreckking, camping, seeView, cbClaimb, txtAddress, cityId, provinceId, txtDes } = req.body;
                 if (err) {
                     console.log(' ' + err)
-                    res.send();
+                    res.send(e+'jwt');
                 } else {
                     // if (!cbTreckking) cbTreckking = false; else cbTreckking = true;
                     // if (!camping) camping = false; else camping = true;
@@ -49,18 +50,18 @@ module.exports = (req, res) => {
                             })
                             .catch(e => {
                                 console.log('loi insert place ' + e);
-                                res.send();
+                                res.send(e+'insertplace');
                             });
 
                     }).catch(er => {
                         console.log('loi truy van user: ' + er);
-                        res.send();
+                        res.send(e+'');
                     });
                 }
             })
         })
         .catch((e) => {
             res.clearCookie("tk");
-            res.send();
+            res.send(e+'');
         });
 }

@@ -8,7 +8,7 @@ module.exports = (req, res) => {
              getListPlaceFromUser(id).then(lst => res.send(lst.rows));
         })
         .catch((e) => {
-            res.clearCookie("tk");
+            //res.clearCookie("tk");
             res.send('LOI GET PLACE')
         });
 }

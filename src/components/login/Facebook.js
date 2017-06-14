@@ -78,7 +78,7 @@ class Facebook extends React.Component {
                         })
                         .catch(e => {
                             if (!response.email) {
-                                const mail = prompt('Vui lòng nhập email để hoàn tất đăng nhập bằng Facebook! ');
+                                const mail = prompt('Vui lòng nhập email');
                                 response.email = mail;
                                 if (!mail) return alert('Vui lòng điền vào email!')
                             }
